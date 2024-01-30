@@ -12,11 +12,12 @@ class ThirdViewController: UIViewController {
     let tableContentView = UITableView()
     // lazy var colView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
-    var allData: [TMDBTVAll] = [
-        TMDBTVAll(results: []),
-        TMDBTVAll(results: []),
-        TMDBTVAll(results: [])
-    ]
+    
+    // 이게 고정적인 느낌이 있는데 차라리 정해진 갯수가 없고 그 값에 따라
+    // 유동적으로 섹션이 생기면 좋지 않을까?
+    
+    var allData: [TMDBTVAll] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +26,15 @@ class ThirdViewController: UIViewController {
         
         
         TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.trendTV, Type: TMDBManager.TrendType.day) { results in
-            self.allData[TMDBManager.TMDBTag.trendTV.rawValue] = results
+            self.allData.append(results)
             self.tableContentView.reloadData()
         }
         TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.topRatedTV, Type: nil) { results in
-            self.allData[TMDBManager.TMDBTag.topRatedTV.rawValue] = results
+            self.allData.append(results)
             self.tableContentView.reloadData()
         }
         TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.popularTV, Type: nil) { results in
-            self.allData[TMDBManager.TMDBTag.popularTV.rawValue] = results
+            self.allData.append(results)
             self.tableContentView.reloadData()
             
             // print(self.allData)
