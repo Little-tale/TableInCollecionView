@@ -35,6 +35,7 @@ class TMDBManager {
         case topRatedTV
         case popularTV
         
+        // MARK: - 이메서드는 각 태그의 따라 스트링을 뱉어줄거야
         func getTMDBTagString() -> String {
             switch self {
             case .trendTV:
@@ -46,6 +47,7 @@ class TMDBManager {
             }
         }
         
+        // MARK: 이 메서드는 태그 숫자를 받으면 태그를 넘겨줄거야
         static func from(tagNum: Int) -> TMDBTag? {
             return TMDBTag(rawValue: tagNum)
         }
