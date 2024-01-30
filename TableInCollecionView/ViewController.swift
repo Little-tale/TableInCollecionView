@@ -121,17 +121,19 @@ extension ViewController {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if trendCollectionView == collectionView {
-            
             print("테스트!!!!!!!")
             
-            return tmdbAllList[0].results.count
-        } else if topCollectionView == collectionView {
+            collectionView.tag = 0
             
+            return tmdbAllList[collectionView.tag].results.count
+        } else if topCollectionView == collectionView {
             print("😡😡😡😡😡😡")
-            return tmdbAllList[1].results.count
+            collectionView.tag = 1
+            return tmdbAllList[collectionView.tag].results.count
         } else {
+            collectionView.tag = 2
             print("☝️☝️☝️☝️☝️☝️")
-            return tmdbAllList[2].results.count
+            return tmdbAllList[collectionView.tag].results.count
         }
         
     }
@@ -139,37 +141,17 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
         
-        if topCollectionView == collectionView {
-            let tmdbTop = tmdbAllList[1].results[indexPath.item]
-            
-            let urlString = TMDBManager.BasicUrl.image + (tmdbTop.poster_path ?? "")
-            let url = URL(string: urlString)
-            
-            cell.imageView.kf.setImage(with: url, placeholder: UIImage(systemName: "star"))
-            cell.titleLabel.text = tmdbTop.original_name
-            return cell
-            
-        } else if populerCollectionView == collectionView {
-            
-            let tmdbpoplist = tmdbAllList[2].results[indexPath.item]  // tmdbPopList[indexPath.item]
-            
-            let urlString = TMDBManager.BasicUrl.image + (tmdbpoplist.poster_path ?? "")
-            let url = URL(string: urlString)
-            cell.imageView.kf.setImage(with: url)
-            cell.titleLabel.text = tmdbpoplist.original_name
-            
-            return cell
-        }
+        let tbdb = tmdbAllList[collectionView.tag].results[indexPath.item]
         
-        let urlString = TMDBManager.BasicUrl.image + (tmdbAllList[0].results[indexPath.item].poster_path ?? "") // tmdbList[indexPath.item].poster_path
-        
-        let url = URL(string: urlString)
-        cell.imageView.kf.setImage(with: url,placeholder: UIImage(systemName: "star"))
-        cell.titleLabel.text = tmdbAllList[0].results[indexPath.item].original_name    //tmdbList[indexPath.item].name
+        let stringUrl = TMDBManager.BasicUrl.image
+        let url = URL(string: stringUrl + (tbdb.poster_path ?? ""))
+        cell.imageView.kf.setImage(with: url, placeholder: UIImage(systemName: "star"))
+        cell.titleLabel.text = tbdb.original_name
         
         //cell.imageView.image = UIImage(systemName: testList[indexPath.item])
         //cell.titleLabel.text = testList[indexPath.item]
         //cell.backgroundColor = .gray
+        
         return cell
     }
     
