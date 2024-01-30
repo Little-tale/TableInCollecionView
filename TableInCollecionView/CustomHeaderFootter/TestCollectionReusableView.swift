@@ -10,14 +10,11 @@ import SnapKit
 
 class TestCollectionReusableView: UICollectionReusableView {
     
-    static let reuseIdentifier = "TestCollectionReusableView"
-    
     lazy var horCollView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     
+    let headerLabel = UILabel()
     
     override init(frame: CGRect) {
-        
-        
         super.init(frame: frame)
         all()
     }
@@ -39,14 +36,19 @@ class TestCollectionReusableView: UICollectionReusableView {
         designView()
     }
     func configureHierarchy(){
-        self.addSubview(horCollView)
+       // self.addSubview(horCollView)
+        self.addSubview(headerLabel)
     }
     func configureLayout(){
-        horCollView.snp.makeConstraints { make in
+//        horCollView.snp.makeConstraints { make in
+//            make.verticalEdges.horizontalEdges.equalTo(self)
+//        }
+        
+        headerLabel.snp.makeConstraints { make in
             make.verticalEdges.horizontalEdges.equalTo(self)
         }
     }
     func designView(){
-        
+        self.backgroundColor = .lightGray
     }
 }

@@ -40,7 +40,7 @@ class CustomTableTableViewCell: UITableViewCell {
         collecionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom)
             make.horizontalEdges.bottom.equalTo(contentView)
-           
+            make.height.greaterThanOrEqualTo(180).priority(900)
         }
     }
     func designView(){
@@ -58,6 +58,7 @@ class CustomTableTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         
         return layout
+        
     }
     
     override func awakeFromNib() {

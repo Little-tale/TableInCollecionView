@@ -65,7 +65,8 @@ class ThirdViewController: UIViewController {
         
         tableContentView.register(CustomTableTableViewCell.self, forCellReuseIdentifier: "CustomTableTableViewCell")
         
-        tableContentView.rowHeight = 200
+        tableContentView.estimatedRowHeight = 200 
+        tableContentView.rowHeight = UITableView.automaticDimension
         tableContentView.backgroundColor = .lightGray
     }
     
