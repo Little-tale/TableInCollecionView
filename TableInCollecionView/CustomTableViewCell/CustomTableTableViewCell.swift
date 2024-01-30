@@ -46,7 +46,7 @@ class CustomTableTableViewCell: UITableViewCell {
     func designView(){
         self.backgroundColor = .blue
         collecionView.backgroundColor = .red
-        //titleLabel.backgroundColor = .white
+        titleLabel.backgroundColor = .white
     }
     
     func configureCollectionViewLayout() -> UICollectionViewLayout {

@@ -34,7 +34,23 @@ class TMDBManager {
         case trendTV
         case topRatedTV
         case popularTV
+        
+        func getTMDBTagString() -> String {
+            switch self {
+            case .trendTV:
+                "트렌트"
+            case .topRatedTV:
+                "TOP RATED"
+            case .popularTV:
+                "POPULAR"
+            }
+        }
+        
+        static func from(tagNum: Int) -> TMDBTag? {
+            return TMDBTag(rawValue: tagNum)
+        }
     }
+    
     
     func petchTrendTV(TrendType: String, compliteHandeler: @escaping ([Results]) -> Void) {
         let url = BasicUrl.trendTV + TrendType

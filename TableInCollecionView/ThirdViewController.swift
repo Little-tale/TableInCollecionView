@@ -88,7 +88,14 @@ extension ThirdViewController: UITableViewDelegate, UITableViewDataSource {
         print("테이블 뷰의 로우가 내 아들의 섹션 : ",indexPath.row)
         // -> 테이블뷰의 로우가 컬의 섹션이 될수 있겠다.
         
+        //MARK: 자식컬렉션에 태그를 넣어 근데 이 태그가 유동적으로 처리하게끔 한번 해보고싶다.
         cell.collecionView.tag = indexPath.row
+        
+        
+        if let tagName = TMDBManager.TMDBTag.from(tagNum: indexPath.row) {
+            cell.titleLabel.text = tagName.getTMDBTagString()
+        }
+        
         cell.collecionView.reloadData()
         
         return cell
