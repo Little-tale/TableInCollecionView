@@ -21,6 +21,10 @@
 		7B0F37452B68EAFE00D26390 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F37442B68EAFE00D26390 /* APIKey.swift */; };
 		7B0F37472B68EB5300D26390 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7B0F37462B68EB5300D26390 /* .gitignore */; };
 		7B0F37492B68EC5000D26390 /* TMDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F37482B68EC5000D26390 /* TMDBModel.swift */; };
+		7B0F374D2B69148C00D26390 /* SeccondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F374C2B69148C00D26390 /* SeccondViewController.swift */; };
+		7B0F37502B69276800D26390 /* TestCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F374F2B69276800D26390 /* TestCollectionReusableView.swift */; };
+		7B0F37522B69380300D26390 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F37512B69380300D26390 /* ThirdViewController.swift */; };
+		7B0F37552B693B4B00D26390 /* CustomTableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0F37542B693B4B00D26390 /* CustomTableTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		7B0F37442B68EAFE00D26390 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		7B0F37462B68EB5300D26390 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7B0F37482B68EC5000D26390 /* TMDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBModel.swift; sourceTree = "<group>"; };
+		7B0F374C2B69148C00D26390 /* SeccondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeccondViewController.swift; sourceTree = "<group>"; };
+		7B0F374F2B69276800D26390 /* TestCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionReusableView.swift; sourceTree = "<group>"; };
+		7B0F37512B69380300D26390 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		7B0F37542B693B4B00D26390 /* CustomTableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,8 @@
 		7B0F371E2B68D8C100D26390 /* TableInCollecionView */ = {
 			isa = PBXGroup;
 			children = (
+				7B0F37532B693B2E00D26390 /* CustomTableViewCell */,
+				7B0F374E2B69268200D26390 /* CustomHeaderFootter */,
 				7B0F373E2B68E03200D26390 /* CustomCollectionCell */,
 				7B0F37332B68DD8000D26390 /* APIManager */,
 				7B0F371F2B68D8C100D26390 /* AppDelegate.swift */,
@@ -82,6 +92,8 @@
 				7B0F372A2B68D8C300D26390 /* LaunchScreen.storyboard */,
 				7B0F372D2B68D8C300D26390 /* Info.plist */,
 				7B0F37442B68EAFE00D26390 /* APIKey.swift */,
+				7B0F374C2B69148C00D26390 /* SeccondViewController.swift */,
+				7B0F37512B69380300D26390 /* ThirdViewController.swift */,
 			);
 			path = TableInCollecionView;
 			sourceTree = "<group>";
@@ -101,6 +113,22 @@
 				7B0F373F2B68E08200D26390 /* CustomCollectionViewCell.swift */,
 			);
 			path = CustomCollectionCell;
+			sourceTree = "<group>";
+		};
+		7B0F374E2B69268200D26390 /* CustomHeaderFootter */ = {
+			isa = PBXGroup;
+			children = (
+				7B0F374F2B69276800D26390 /* TestCollectionReusableView.swift */,
+			);
+			path = CustomHeaderFootter;
+			sourceTree = "<group>";
+		};
+		7B0F37532B693B2E00D26390 /* CustomTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7B0F37542B693B4B00D26390 /* CustomTableTableViewCell.swift */,
+			);
+			path = CustomTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,10 +213,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B0F37552B693B4B00D26390 /* CustomTableTableViewCell.swift in Sources */,
 				7B0F37492B68EC5000D26390 /* TMDBModel.swift in Sources */,
 				7B0F37352B68DD9700D26390 /* APIManager.swift in Sources */,
+				7B0F37522B69380300D26390 /* ThirdViewController.swift in Sources */,
 				7B0F37402B68E08200D26390 /* CustomCollectionViewCell.swift in Sources */,
+				7B0F37502B69276800D26390 /* TestCollectionReusableView.swift in Sources */,
 				7B0F37242B68D8C100D26390 /* ViewController.swift in Sources */,
+				7B0F374D2B69148C00D26390 /* SeccondViewController.swift in Sources */,
 				7B0F37202B68D8C100D26390 /* AppDelegate.swift in Sources */,
 				7B0F37452B68EAFE00D26390 /* APIKey.swift in Sources */,
 				7B0F37222B68D8C100D26390 /* SceneDelegate.swift in Sources */,

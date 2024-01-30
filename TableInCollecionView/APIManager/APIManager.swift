@@ -29,6 +29,12 @@ class TMDBManager {
         static let week = "/week"
     }
     
+    // MARK: - 테스트를 위해 숫자를 마구잡이로 -> 하게되면 만들어둔 배열이 0 1 2 3 이런식이라 고민 많이 해야함
+    enum TMDBTag: Int {
+        case trendTV
+        case topRatedTV
+        case popularTV
+    }
     
     func petchTrendTV(TrendType: String, compliteHandeler: @escaping ([Results]) -> Void) {
         let url = BasicUrl.trendTV + TrendType

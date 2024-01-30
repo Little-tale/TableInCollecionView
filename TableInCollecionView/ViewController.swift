@@ -42,15 +42,15 @@ class ViewController: UIViewController {
         designView()
 
         TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.trendTV, Type: TMDBManager.TrendType.day) { results in
-            self.tmdbAllList[0] = results
+            self.tmdbAllList[TMDBManager.TMDBTag.trendTV.rawValue] = results
             self.trendCollectionView.reloadData()
         }
         TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.topRatedTV, Type: nil) { results in
-            self.tmdbAllList[1] = results
+            self.tmdbAllList[TMDBManager.TMDBTag.topRatedTV.rawValue] = results
             self.topCollectionView.reloadData()
         }
         TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.popularTV, Type: nil) { results in
-            self.tmdbAllList[2] = results
+            self.tmdbAllList[TMDBManager.TMDBTag.popularTV.rawValue] = results
             self.populerCollectionView.reloadData()
         }
         
@@ -98,10 +98,18 @@ class ViewController: UIViewController {
         populerCollectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "CustomCollectionViewCell")
         
         trendCollectionView.isPagingEnabled = true
-
+        
+        navigationItem.title = "1단계"
+        let rightBarItem = UIBarButtonItem(title: "다음단계", style: .plain, target: self, action: #selector(nextView) )
+        
+        navigationItem.rightBarButtonItem = rightBarItem
     }
 
-
+    @objc func nextView() {
+        let vc = SeccondViewController()
+        print(#function)
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ViewController {
@@ -123,15 +131,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         if trendCollectionView == collectionView {
             print("테스트!!!!!!!")
             
-            collectionView.tag = 0
+            collectionView.tag = TMDBManager.TMDBTag.trendTV.rawValue
             
             return tmdbAllList[collectionView.tag].results.count
         } else if topCollectionView == collectionView {
             print("😡😡😡😡😡😡")
-            collectionView.tag = 1
+            collectionView.tag = TMDBManager.TMDBTag.topRatedTV.rawValue
             return tmdbAllList[collectionView.tag].results.count
         } else {
-            collectionView.tag = 2
+            collectionView.tag = TMDBManager.TMDBTag.popularTV.rawValue
             print("☝️☝️☝️☝️☝️☝️")
             return tmdbAllList[collectionView.tag].results.count
         }

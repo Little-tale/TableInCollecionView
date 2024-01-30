@@ -21,7 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = ViewController()
         window = UIWindow(windowScene: scene)
         
-        window?.rootViewController = vc
+        let navVc = UINavigationController(rootViewController: vc)
+        
+        window?.rootViewController =  ThirdViewController() // SeccondViewController()  //navVc
         window?.makeKeyAndVisible()
         
     }

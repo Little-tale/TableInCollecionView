@@ -42,8 +42,8 @@ class CustomCollectionViewCell: UICollectionViewCell {
         }
     }
     func designView(){
-        //imageView.backgroundColor = .cyan
-        //titleLabel.backgroundColor = .orange
+        imageView.backgroundColor = .cyan
+        titleLabel.backgroundColor = .orange
     }
     
 }
