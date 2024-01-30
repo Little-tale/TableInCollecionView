@@ -47,6 +47,8 @@ class ThirdViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         designView()
+        
+        navigationItem.title = "3단계"
     }
     
     func configureHierarchy(){

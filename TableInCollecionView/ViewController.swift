@@ -156,9 +156,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.imageView.kf.setImage(with: url, placeholder: UIImage(systemName: "star"))
         cell.titleLabel.text = tbdb.original_name
         
-        //cell.imageView.image = UIImage(systemName: testList[indexPath.item])
-        //cell.titleLabel.text = testList[indexPath.item]
-        //cell.backgroundColor = .gray
+
         
         return cell
     }

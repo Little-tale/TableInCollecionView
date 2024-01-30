@@ -34,6 +34,8 @@ class TestCollectionReusableView: UICollectionReusableView {
         configureHierarchy()
         configureLayout()
         designView()
+        
+       
     }
     func configureHierarchy(){
        // self.addSubview(horCollView)

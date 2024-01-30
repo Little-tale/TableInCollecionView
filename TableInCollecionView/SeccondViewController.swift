@@ -36,13 +36,25 @@ class SeccondViewController: UIViewController {
             self.tmdbAllList.append(results)
             self.oneCollecionView.reloadData()
         }
-        
+        navi()
     }
     
     func all(){
         configureHierarchy()
         configureLayout()
         designView()
+    }
+    func navi(){
+        navigationItem.title = "2단계"
+        
+        let rightBarItem = UIBarButtonItem(title: "다음단계", style: .plain, target: self, action: #selector(nextView) )
+        
+        navigationItem.rightBarButtonItem = rightBarItem
+    }
+    @objc func nextView() {
+        let vc = ThirdViewController()
+        print(#function)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func configureHierarchy(){
