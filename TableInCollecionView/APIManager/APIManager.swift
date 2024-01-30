@@ -82,6 +82,29 @@ class TMDBManager {
         
     }
     
+    func petchTMDBTV (basicUrl: String, Type: String? , compliteHandler : @escaping (TMDBTVAll) -> Void ) {
+        var url = basicUrl //BasicUrl.popularTV
+        
+//        if Type != nil{
+//            url = url + Type!
+//        }
+        if let type = Type {
+            url = url + type
+        }
+        
+        AF.request(url, method: .get, headers: Header.tbdb).responseDecodable(of: TMDBTVAll.self) { response in
+            switch response.result {
+            case .success(let success):
+//                print(success)
+                compliteHandler(success)
+            case .failure(let failure):
+                print("✂️✂️✂️✂️✂️✂️")
+                print(failure)
+            }
+        }
+        
+    }
+    
 }
 
 

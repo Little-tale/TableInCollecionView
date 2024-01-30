@@ -33,3 +33,12 @@ struct Populars: Decodable {
     let original_name : String
     let poster_path : String?
 }
+
+struct TMDBTVAll: Decodable {
+    let results : [AllResults]
+}
+
+struct AllResults: Decodable {
+    let original_name: String
+    let poster_path: String?
+}

@@ -25,9 +25,13 @@ class ViewController: UIViewController {
     // 모델링을 다해보니 모양이 같아서 같은 모델 재사용
     
     let testList = ["star","star.fill","star","star.fill","star","star.fill","star","star.fill"]
-    var tmdbList: [Results] = []
-    var tmdbTopList: [TopResults] = []
-    var tmdbPopList: [Populars] = []
+
+    
+    var tmdbAllList: [TMDBTVAll] = [
+        TMDBTVAll(results: []),
+        TMDBTVAll(results: []),
+        TMDBTVAll(results: [])
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,25 +40,22 @@ class ViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         designView()
-        TMDBManager.shard.petchTrendTV(TrendType: TMDBManager.TrendType.day) { TMDBTV in
-            self.tmdbList = TMDBTV
-            // 값 전달 받는지 테스트 V
-            // print(self.tmdbList)
-            // 트렌드 콜렉션뷰 리로드
+
+        TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.trendTV, Type: TMDBManager.TrendType.day) { results in
+            self.tmdbAllList[0] = results
             self.trendCollectionView.reloadData()
         }
-        // API 2번째 테스트 시작 1. 통신 성공 V 2. 값 전달
-        TMDBManager.shard.petchTVTopRated { TopResults in
-            self.tmdbTopList = TopResults
-            // print(TopResults)
+        TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.topRatedTV, Type: nil) { results in
+            self.tmdbAllList[1] = results
             self.topCollectionView.reloadData()
         }
-        TMDBManager.shard.petchPopularTV { result in
-            self.tmdbPopList = result
-            print(self.tmdbPopList)
+        TMDBManager.shard.petchTMDBTV(basicUrl: TMDBManager.BasicUrl.popularTV, Type: nil) { results in
+            self.tmdbAllList[2] = results
             self.populerCollectionView.reloadData()
         }
         
+        
+
       
     }
     
@@ -123,25 +124,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             
             print("테스트!!!!!!!")
             
-            return tmdbList.count
+            return tmdbAllList[0].results.count
         } else if topCollectionView == collectionView {
             
             print("😡😡😡😡😡😡")
-            return tmdbTopList.count
+            return tmdbAllList[1].results.count
         } else {
-            
             print("☝️☝️☝️☝️☝️☝️")
+            return tmdbAllList[2].results.count
         }
         
-        return tmdbList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
         
         if topCollectionView == collectionView {
-            let tmdbTop = tmdbTopList[indexPath.item]
-            let urlString = TMDBManager.BasicUrl.image + tmdbTop.poster_path
+            let tmdbTop = tmdbAllList[1].results[indexPath.item]
+            
+            let urlString = TMDBManager.BasicUrl.image + (tmdbTop.poster_path ?? "")
             let url = URL(string: urlString)
             
             cell.imageView.kf.setImage(with: url, placeholder: UIImage(systemName: "star"))
@@ -150,7 +151,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             
         } else if populerCollectionView == collectionView {
             
-            let tmdbpoplist = tmdbPopList[indexPath.item]
+            let tmdbpoplist = tmdbAllList[2].results[indexPath.item]  // tmdbPopList[indexPath.item]
+            
             let urlString = TMDBManager.BasicUrl.image + (tmdbpoplist.poster_path ?? "")
             let url = URL(string: urlString)
             cell.imageView.kf.setImage(with: url)
@@ -159,11 +161,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         }
         
-        let urlString = TMDBManager.BasicUrl.image + tmdbList[indexPath.item].poster_path
+        let urlString = TMDBManager.BasicUrl.image + (tmdbAllList[0].results[indexPath.item].poster_path ?? "") // tmdbList[indexPath.item].poster_path
         
         let url = URL(string: urlString)
         cell.imageView.kf.setImage(with: url,placeholder: UIImage(systemName: "star"))
-        cell.titleLabel.text = tmdbList[indexPath.item].name
+        cell.titleLabel.text = tmdbAllList[0].results[indexPath.item].original_name    //tmdbList[indexPath.item].name
         
         //cell.imageView.image = UIImage(systemName: testList[indexPath.item])
         //cell.titleLabel.text = testList[indexPath.item]
